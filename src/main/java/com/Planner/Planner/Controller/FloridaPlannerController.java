@@ -9,6 +9,7 @@ import com.Planner.Planner.Repository.TripRepository;
 import com.Planner.Planner.Service.Implementations.TripService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,19 @@ public class FloridaPlannerController {
         this.tripRepository = tripRepository;
     }
 
+
+    @Value("${application1.update}")
+    String Welcome ;
+
+
+
+    @GetMapping("/shortest-route/welcome")
+    public ResponseEntity<String> welcome()
+    {
+
+        return ResponseEntity.status(HttpStatus.OK).body(Welcome) ;
+    }
+
     @GetMapping("/shortest-route/{cityStartId}/{cityEndId}")
     public ResponseEntity<?> getShortestRoute(@PathVariable Long cityStartId, @PathVariable Long cityEndId) {
         try {
@@ -69,7 +83,7 @@ public class FloridaPlannerController {
 
 
     @GetMapping("/shortest-route/test")
-    public ResponseEntity<String> getShortestRou1() {
+    public ResponseEntity<?> getShortestRou1() {
 
 
 

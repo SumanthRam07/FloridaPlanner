@@ -7,9 +7,13 @@ server:
 
 spring:
   application:
-    name: "FloridaTripPlanner"
+    name: "Planner"
+  config:
+    import:  "optional:configserver:http://localhost:8081/"
+  profiles:
+    active: "prod"
   datasource:
-    url: jdbc:mysql://localhost:3560/floridaplanner
+    url:  jdbc:mysql://localhost:3560/floridaplanner
     username: root
     password: rootpassword
   jpa:
@@ -22,6 +26,9 @@ spring:
 logging:
   level:
     root: DEBUG
+
+application1:
+  update: "I am adding the spring cloud config  "
 
 
 
